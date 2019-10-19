@@ -11,3 +11,7 @@ i have based this on spago and tried to provide the correct additions for the fo
 I don't know yet if this is going to work as there are two classes of compile errors still outstanding
   * replacing the obsoleted Renderless library
   * changing some more of the ChildPath stuff to the Halogen 0.5 model
+  
+## resources
+ * https://github.com/thomashoneyman/purescript-halogen-realworld/pull/26
+ * https://github.com/slamdata/purescript-halogen/blob/master/docs/Changes%20in%20v5.md
