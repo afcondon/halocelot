@@ -7,7 +7,6 @@ import Data.Functor.Coproduct.Nested (Coproduct2)
 import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
-import Halogen.Component.ChildPath as CP
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
@@ -35,11 +34,17 @@ type Input = Unit
 
 type Message = Void
 
-type ChildSlot = Either2 Unit Unit
-type ChildQuery m =
-  Coproduct2
-    (TA.Query Query Array Async.Location m)
-    (TA.Query Query Array Async.User m)
+-- type ChildSlot = Either2 Unit Unit
+-- type ChildQuery m =
+--   Coproduct2
+--     (TA.Query Query Array Async.Location m)
+--     (TA.Query Query Array Async.User m)
+type ChildSlot =
+  ( a :: H.Slot (TA.Query Query Array Async.Location m) Void Unit
+  , b :: H.Slot (TA.Query Query Array Async.User m) Void Unit
+  )
+_a = SProxy :: SProxy "a"
+_b = SProxy :: SProxy "b"
 
 component :: ∀ m
   . MonadAff m
@@ -110,7 +115,7 @@ component =
               , error: []
               , inputId: "locations"
               }
-              [ HH.slot' CP.cp1 unit TA.multi
+              [ HH.slot _a unit TA.multi
                 ( TA.asyncMulti
                   { renderFuzzy: HH.span_ <<< IC.boldMatches "name"
                   , itemToObject: Async.locationToObject
@@ -131,7 +136,7 @@ component =
               , error: []
               , inputId: "locations"
               }
-              [ HH.slot' CP.cp2 unit TA.multi
+              [ HH.slot _b unit TA.multi
                 ( TA.asyncMulti
                   { renderFuzzy: Async.renderFuzzyUser
                   , itemToObject: Async.userToObject

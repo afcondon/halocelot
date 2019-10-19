@@ -9,7 +9,6 @@ import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
 import Effect.Class.Console (log)
 import Halogen as H
-import Halogen.Component.ChildPath as CP
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
@@ -35,9 +34,15 @@ type Input = Unit
 
 type Message = Void
 
-type ChildSlot = Either2 Unit Unit
+-- type ChildSlot = Either2 Unit Unit
+-- type ChildQuery m = Coproduct2 (DD.Query Query String m) (Select.Query Query Platform)
+type ChildSlot =
+  ( a :: H.Slot (DD.Query Query String m) Void Unit
+  , b :: H.Slot (Select.Query Query Platform) Void Unit
+  )
 
-type ChildQuery m = Coproduct2 (DD.Query Query String m) (Select.Query Query Platform)
+_a = SProxy :: SProxy "a"
+_b = SProxy :: SProxy "b"
 
 data Platform
   = Facebook
@@ -73,7 +78,7 @@ component =
           H.liftEffect $ case x of
             Facebook -> log "Facebook"
             Twitter -> log "Twitter"
-          H.query' CP.cp2 unit ( Select.setVisibility Select.Off )
+          H.query' _b unit ( Select.setVisibility Select.Off )
 
         _ -> pure a
 
@@ -92,8 +97,8 @@ component =
                 [ css "mb-6" ]
                 [ Format.caption_
                   [ HH.text "Standard" ]
-                , HH.slot'
-                  CP.cp1
+                , HH.slot
+                  _a
                   unit
                   DD.component
                   { selectedItem: Nothing
@@ -106,8 +111,8 @@ component =
                 [ css "mb-6" ]
                 [ Format.caption_
                   [ HH.text "Disabled & Hydrated" ]
-                , HH.slot'
-                  CP.cp1
+                , HH.slot
+                  _a
                   unit
                   DD.component
                   { selectedItem: Just "Kilchoman Blue Label"
@@ -124,8 +129,8 @@ component =
                 [ css "mb-6" ]
                 [ Format.caption_
                   [ HH.text "Primary" ]
-                , HH.slot'
-                  CP.cp1
+                , HH.slot
+                  _a
                   unit
                   DD.component
                   { selectedItem: Nothing
@@ -138,8 +143,8 @@ component =
                 [ css "mb-6" ]
                 [ Format.caption_
                   [ HH.text "Disabled & Hydrated" ]
-                , HH.slot'
-                  CP.cp1
+                , HH.slot
+                  _a
                   unit
                   DD.component
                   { selectedItem: Just "Kilchoman Blue Label"
@@ -156,8 +161,8 @@ component =
                 [ css "mb-6" ]
                 [ Format.caption_
                   [ HH.text "Dark" ]
-                , HH.slot'
-                  CP.cp1
+                , HH.slot
+                  _a
                   unit
                   DD.component
                   { selectedItem: Nothing
@@ -170,8 +175,8 @@ component =
                 [ css "mb-6" ]
                 [ Format.caption_
                   [ HH.text "Disabled & Hydrated" ]
-                , HH.slot'
-                  CP.cp1
+                , HH.slot
+                  _a
                   unit
                   DD.component
                   { selectedItem: Just "Kilchoman Blue Label"
@@ -189,8 +194,8 @@ component =
           }
           [ Backdrop.backdrop
             [ css "h-40 flex items-center justify-center" ]
-            [ HH.slot'
-                CP.cp2
+            [ HH.slot
+                _b
                 unit
                 Select.component
                 selectInput
@@ -289,4 +294,3 @@ component =
                       [ HH.text "Twitter" ]
                     ]
                   ]
-

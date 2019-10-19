@@ -8,7 +8,6 @@ import Data.Functor.Coproduct.Nested (Coproduct3)
 import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
-import Halogen.Component.ChildPath as CP
 import Halogen.HTML as HH
 import Ocelot.Block.Card as Card
 import Ocelot.Block.FormField as FormField
@@ -44,9 +43,9 @@ type ChildSlot =
   , c :: H.Slot DateTimePicker.Query Void Unit
   )
 
-_a = SProxy :: SProxy "a"
-_b = SProxy :: SProxy "b"
-_c = SProxy :: SProxy "c"
+_a = SProxy :: SProxy "dataPicker"
+_b = SProxy :: SProxy "timePicker"
+_c = SProxy :: SProxy "dateTimePicker"
 
 ----------
 -- Component definition
