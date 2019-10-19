@@ -9,7 +9,6 @@ import Data.Maybe (Maybe(..))
 import Data.Tuple (Tuple)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
-import Halogen.Component.ChildPath as CP
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Ocelot.Component.DatePicker as DP

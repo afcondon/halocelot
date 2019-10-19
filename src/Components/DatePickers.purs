@@ -33,12 +33,20 @@ data Query a
 ----------
 -- Child paths
 
-type ChildSlot = Either3 Int Int Int
+-- type ChildSlot = Either3 Int Int Int
+-- type ChildQuery = Coproduct3
+--   (DatePicker.Query)
+--   (TimePicker.Query)
+--   (DateTimePicker.Query)
+type ChildSlot =
+  ( a :: H.Slot DatePicker.Query Void Unit
+  , b :: H.Slot TimePicker.Query Void Unit
+  , c :: H.Slot DateTimePicker.Query Void Unit
+  )
 
-type ChildQuery = Coproduct3
-  (DatePicker.Query)
-  (TimePicker.Query)
-  (DateTimePicker.Query)
+_a = SProxy :: SProxy "a"
+_b = SProxy :: SProxy "b"
+_c = SProxy :: SProxy "c"
 
 ----------
 -- Component definition
@@ -91,7 +99,7 @@ cnDocumentationBlocks =
               , error: []
               , inputId: "start-date"
               }
-              [ HH.slot' CP.cp1 0 DatePicker.component
+              [ HH.slot _a 0 DatePicker.component
                 { targetDate: Nothing
                 , selection: Nothing
                 }
@@ -109,7 +117,7 @@ cnDocumentationBlocks =
               , error: []
               , inputId: "end-date"
               }
-              [ HH.slot' CP.cp1 1 DatePicker.component
+              [ HH.slot _a 1 DatePicker.component
                 { targetDate: Nothing
                 , selection: Just $ unsafeMkDate 2019 1 1
                 }
@@ -134,7 +142,7 @@ cnDocumentationBlocks =
               , error: []
               , inputId: "start-time"
               }
-              [ HH.slot' CP.cp2 0 TimePicker.component
+              [ HH.slot _b 0 TimePicker.component
                 { selection: Nothing
                 }
                 (const Nothing)
@@ -151,7 +159,7 @@ cnDocumentationBlocks =
               , error: []
               , inputId: "end-time"
               }
-              [ HH.slot' CP.cp2 1 TimePicker.component
+              [ HH.slot _b 1 TimePicker.component
                 { selection: Just $ unsafeMkTime 12 0 0 0
                 }
                 (const Nothing)
@@ -175,7 +183,7 @@ cnDocumentationBlocks =
               , error: []
               , inputId: "start"
               }
-              [ HH.slot' CP.cp3 0 DateTimePicker.component
+              [ HH.slot _c 0 DateTimePicker.component
                 { targetDate: Nothing
                 , selection: Nothing
                 }
@@ -193,7 +201,7 @@ cnDocumentationBlocks =
               , error: []
               , inputId: "end"
               }
-              [ HH.slot' CP.cp3 1 DateTimePicker.component
+              [ HH.slot _c 1 DateTimePicker.component
                 { targetDate: Nothing
                 , selection: Just $ DateTime (unsafeMkDate 2019 1 1) (unsafeMkTime 0 0 0 0)
                 }

@@ -15,11 +15,17 @@ You can edit this file as you like.
     , "fuzzy"
     , "generics-rep"
     , "halogen"
+    , "halogen-select"
+    , "halogen-storybook"
+    , "html-parser-halogen"
+    , "js-timers"
     , "psci-support"
     , "rationals"
     , "read"
     , "remotedata"
     , "routing"
+    , "string-parsers"
+    , "svg-parser-halogen"
     , "variant"
     ]
 , packages =

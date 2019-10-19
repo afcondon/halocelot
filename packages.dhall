@@ -118,7 +118,7 @@ let overrides = {=}
 
 let additions =
   { datetime =
-       mkPackage
+      { dependencies =
          [ "bifunctors"
          , "control"
          , "either"
@@ -136,11 +136,12 @@ let additions =
          , "prelude"
          , "tuples"
          ]
-         "https://github.com/purescript/purescript-datetime.git"
-         "v4.1.1"
+      , repo = "https://github.com/purescript/purescript-datetime.git"
+      , version = "v4.1.1"
+      }
   , affjax =
-      mkPackage
-        [   "aff"
+      { dependencies =
+          [ "aff"
           , "argonaut-core"
           , "arraybuffer-types"
           , "web-xhr"
@@ -153,9 +154,20 @@ let additions =
           , "nullable"
           , "refs"
           , "unsafe-coerce"
-        ]
-        "https://github.com/slamdata/purescript-affjax.git"
-        "v9.0.1"
+          ]
+      , repo = "https://github.com/slamdata/purescript-affjax.git"
+      , version = "v9.0.1"
+      }
+  , html-parser-halogen =
+      { dependencies = [  "string-parsers" ]
+      , repo = "https://github.com/rnons/purescript-html-parser-halogen.git"
+      , version = "v0.2.0"
+      }
+  , halogen-storybook =
+      { dependencies = [ "halogen" ]
+      , repo = "https://github.com/rnons/purescript-halogen-storybook.git"
+      , version = "v0.4.0"
+    }
   }
 
 in  upstream // overrides // additions
