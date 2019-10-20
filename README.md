@@ -15,3 +15,6 @@ I don't know yet if this is going to work as there are two classes of compile er
 ## resources
  * https://github.com/thomashoneyman/purescript-halogen-realworld/pull/26
  * https://github.com/slamdata/purescript-halogen/blob/master/docs/Changes%20in%20v5.md
+ 
+## license
+since this is nothing more than a fork of Ocelot, really, it inherits it's license from there, Apache 2.0
