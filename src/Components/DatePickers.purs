@@ -38,12 +38,12 @@ data Query a
 --   (TimePicker.Query)
 --   (DateTimePicker.Query)
 type ChildSlot =
-  ( a :: H.Slot DatePicker.Query Void Unit
+  ( a :: H.Slot DatePicker.Query Void Unit -- where'd the Int Int Int go?
   , b :: H.Slot TimePicker.Query Void Unit
   , c :: H.Slot DateTimePicker.Query Void Unit
   )
 
-_a = SProxy :: SProxy "dataPicker"
+_a = SProxy :: SProxy "datePicker" -- will these names work? don't they have to match elsewhere?
 _b = SProxy :: SProxy "timePicker"
 _c = SProxy :: SProxy "dateTimePicker"
 
