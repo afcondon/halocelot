@@ -139,6 +139,12 @@ let additions =
       , repo = "https://github.com/purescript/purescript-datetime.git"
       , version = "v4.1.1"
       }
+  , form-urlencoded =
+      { dependencies =
+          [ "maybe" ]
+      , repo = "https://github.com/purescript-contrib/purescript-form-urlencoded.git"
+      , version = "v4.0.0"
+      }
   , affjax =
       { dependencies =
           [ "aff"
@@ -163,11 +169,6 @@ let additions =
       , repo = "https://github.com/rnons/purescript-html-parser-halogen.git"
       , version = "v0.2.0"
       }
-  , halogen-storybook =
-      { dependencies = [ "halogen" ]
-      , repo = "https://github.com/rnons/purescript-halogen-storybook.git"
-      , version = "v0.4.0"
-    }
   }
 
 in  upstream // overrides // additions
