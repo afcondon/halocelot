@@ -17,6 +17,8 @@ You can edit this file as you like.
     , "generics-rep"
     , "halogen"
     , "halogen-select"
+    , "halogen-storybook"
+    , "html-parser-halogen"
     , "js-timers"
     , "psci-support"
     , "rationals"

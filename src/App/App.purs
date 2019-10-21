@@ -28,7 +28,7 @@ import Global.Unsafe (unsafeDecodeURI, unsafeEncodeURI)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
-import Halogen.Storybook.Proxy (ProxyS, proxy)
+import Halogen.Storybook.Proxy (proxy)
 import Halogen.VDom.Driver (runUI)
 import Ocelot.Block.Format as Format
 import UIGuide.Block.Backdrop as Backdrop

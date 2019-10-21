@@ -164,6 +164,17 @@ let additions =
       , repo = "https://github.com/slamdata/purescript-affjax.git"
       , version = "v9.0.1"
       }
-  }
+  , html-parser-halogen =
+      { dependencies = [  "string-parsers" ]
+      , repo = "https://github.com/rnons/purescript-html-parser-halogen.git"
+      , version = "master"
+      }
+  , halogen-storybook =
+      { dependencies = [ "halogen" ]
+      , repo = "https://github.com/rnons/purescript-halogen-storybook.git"
+      , version = "master"
+    }
+
+}
 
 in  upstream // overrides // additions
