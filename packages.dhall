@@ -167,12 +167,12 @@ let additions =
   , html-parser-halogen =
       { dependencies = [  "string-parsers" ]
       , repo = "https://github.com/rnons/purescript-html-parser-halogen.git"
-      , version = "master"
+      , version = "7d37fd6a29bff2a143d91c2ebfe5ca582ca76018"
       }
   , halogen-storybook =
       { dependencies = [ "halogen" ]
       , repo = "https://github.com/rnons/purescript-halogen-storybook.git"
-      , version = "master"
+      , version = "de336410dde6e59ad4930f7e4296d066cb236628"
     }
 
 }
